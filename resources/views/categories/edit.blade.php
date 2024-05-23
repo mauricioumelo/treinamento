@@ -16,8 +16,9 @@
         <h1 class="mb-4">Editar categorias</h1>
         <div class="row">
             <div class="col-12">
-                <form method="PUT" action="{{route('app.categories.update', $category->id)}}">
+                <form method="POST" action="{{route('app.categories.update', $category->id)}}">
                     @csrf
+                    @method('put')
                     <div class="row">
                         <div class="col-12">
                             <div class="mb-3">

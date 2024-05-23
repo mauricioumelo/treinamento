@@ -18,10 +18,8 @@ Route::prefix('/app')->name('app.')->group(function () {
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
             Route::get('/edit/{category}', 'edit')->name('edit');
-
-            Route::get('/delete', function () {
-                dd("Categories deletar...");
-            })->name('delete');
+            Route::put('/update/{category}', 'update')->name('update');
+            Route::delete('/delete/{id}', 'destroy')->name('delete');
         });
 
     });

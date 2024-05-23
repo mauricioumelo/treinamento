@@ -73,14 +73,40 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        try {
+            $data = [
+                "name" => $request->get('name')
+            ];
+    
+            $category->update($data);
+
+            return redirect()
+                ->route('app.categories.index')
+                ->with('message', 'sucesso ao atualizar!');
+        } catch (\Throwable $th) {
+            return redirect()
+                ->back();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(string $id)
     {
-        //
+        try {
+           $category = Category::where('id', $id)->first();
+
+           if(!$category)
+            throw new Exception("Category not found", 404);
+
+            $category->delete();
+            return redirect()
+                ->route('app.categories.index')
+                ->with('message', 'sucesso ao atualizar!');
+        } catch (\Throwable $th) {
+            return redirect()
+                ->back();
+        }
     }
 }
